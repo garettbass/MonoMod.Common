@@ -89,7 +89,7 @@ namespace MonoMod.Utils {
                 string.Empty,
                 "<Module>",
                 Module,
-                ImportReference(module.Assembly.GetName())
+                ImportReference(module.Assembly.SafeGetAssemblyName())
             );
         }
 
@@ -149,7 +149,7 @@ namespace MonoMod.Utils {
 				string.Empty,
 				type.Name,
 				Module,
-				ImportReference(type.Assembly.GetName()),
+				ImportReference(type.Assembly.SafeGetAssemblyName()),
                 type.IsValueType
             );
 

@@ -83,7 +83,7 @@ namespace MonoMod.Utils.Cil {
                 {
 
                     CustomAttribute ca_IACTA = new CustomAttribute(module.ImportReference(DynamicMethodDefinition.c_IgnoresAccessChecksToAttribute));
-                    ca_IACTA.ConstructorArguments.Add(new CustomAttributeArgument(module.TypeSystem.String, typeof(ILGeneratorShim).Assembly.GetName().Name));
+                    ca_IACTA.ConstructorArguments.Add(new CustomAttributeArgument(module.TypeSystem.String, typeof(ILGeneratorShim).Assembly.SafeGetName()));
                     module.Assembly.CustomAttributes.Add(ca_IACTA);
 
                     TypeDefinition type = new TypeDefinition(
@@ -165,7 +165,7 @@ namespace MonoMod.Utils.Cil {
                 // Sadly, we can't control how MonoMod.Common / MonoMod.Utils / ... gets loaded.
                 ResolveEventHandler mmcResolver = (asmSender, asmArgs) => {
                     AssemblyName asmName = new AssemblyName(asmArgs.Name);
-                    if (asmName.Name == typeof(ILGeneratorBuilder).Assembly.GetName().Name)
+                    if (asmName.Name == typeof(ILGeneratorBuilder).Assembly.SafeGetName())
                         return typeof(ILGeneratorBuilder).Assembly;
                     return null;
                 };

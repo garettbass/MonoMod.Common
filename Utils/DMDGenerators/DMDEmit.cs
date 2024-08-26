@@ -189,7 +189,7 @@ namespace MonoMod.Utils {
                                 // while (member.DeclaringType != null)
                                 //     member = member.DeclaringType;
                                 assemblyBuilder.SetCustomAttribute(new CustomAttributeBuilder(DynamicMethodDefinition.c_IgnoresAccessChecksToAttribute, new object[] {
-                                    asm.GetName().Name
+                                    asm.SafeGetName()
                                 }));
                                 accessChecksIgnored.Add(asm);
                             }

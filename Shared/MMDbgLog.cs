@@ -12,7 +12,7 @@ using System.Threading;
 namespace MonoMod {
     internal static class MMDbgLog {
 
-        public static readonly string Tag = typeof(MMDbgLog).Assembly.GetName().Name;
+        public static readonly string Tag = typeof(MMDbgLog).Assembly.SafeGetName();
 
         public static TextWriter Writer;
 

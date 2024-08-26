@@ -228,8 +228,8 @@ namespace MonoMod.Utils {
                         asms =
                             AppDomain.CurrentDomain.GetAssemblies()
                             .Where(other => {
-                                AssemblyName name = other.GetName();
-                                return name.Name == asmName || name.FullName == asmName;
+                                string name = other.SafeGetName();
+                                return name == asmName || other.FullName == asmName;
                             }).ToArray();
 
                         if (asms.Length == 0 && Assembly.Load(new AssemblyName(asmName)) is Assembly loaded)

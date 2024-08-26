@@ -130,11 +130,11 @@ namespace MonoMod.Utils {
                 // major, minor, build, revision[, arch] (10 framework / 20 core + padding)
                 (
                     !_MonoAssemblyNameHasArch ? (
-                        typeof(object).Assembly.GetName().Name == "System.Private.CoreLib" ?
+                        typeof(object).Assembly.SafeGetName() == "System.Private.CoreLib" ?
                         16 :
                         8
                     ) : (
-                        typeof(object).Assembly.GetName().Name == "System.Private.CoreLib" ?
+                        typeof(object).Assembly.SafeGetName() == "System.Private.CoreLib" ?
                         (IntPtr.Size == 4 ? 20 : 24) :
                         (IntPtr.Size == 4 ? 12 : 16)
                     )
